@@ -39,35 +39,36 @@
 </div>
 
 <div class="question">
-  <p>4. チームで共有して編集する必要は？</p>
-  <label><input type="radio" name="q4" value="A">はい</label>
-  <label><input type="radio" name="q4" value="B">いいえ</label>
+  <p>4. 縦動画か横動画か？</p>
+  <label><input type="radio" name="q4" value="A">縦動画</label>
+  <label><input type="radio" name="q4" value="B">横動画</label>
+  <label><input type="radio" name="q4" value="C">どちらも可能</label>
 </div>
 
 <div class="question">
-  <p>5. 特殊な機能が必要？</p>
-  <label><input type="radio" name="q5" value="A">動くモザイク</label>
-  <label><input type="radio" name="q5" value="B">特になし</label>
+  <p>5. 利用する端末は？</p>
+  <label><input type="radio" name="q5" value="A">iPhone</label>
+  <label><input type="radio" name="q5" value="B">Android</label>
+  <label><input type="radio" name="q5" value="C">両方</label>
 </div>
 
 <div class="question">
-  <p>6. 利用する端末は？</p>
-  <label><input type="radio" name="q6" value="A">iPhone</label>
-  <label><input type="radio" name="q6" value="B">Android</label>
-  <label><input type="radio" name="q6" value="C">両方</label>
+  <p>6. 予算は？</p>
+  <label><input type="radio" name="q6" value="A">無料がいい</label>
+  <label><input type="radio" name="q6" value="B">月500円以内ならOK</label>
+  <label><input type="radio" name="q6" value="C">月1000円以上でもOK</label>
 </div>
 
 <div class="question">
-  <p>7. 予算は？</p>
-  <label><input type="radio" name="q7" value="A">無料がいい</label>
-  <label><input type="radio" name="q7" value="B">月500円以内</label>
-  <label><input type="radio" name="q7" value="C">月1000円以上でもOK</label>
+  <p>7. 利用目的は？</p>
+  <label><input type="radio" name="q7" value="A">商用利用</label>
+  <label><input type="radio" name="q7" value="B">個人使用</label>
 </div>
 
 <div class="question">
-  <p>8. 利用目的は？</p>
-  <label><input type="radio" name="q8" value="A">商用利用</label>
-  <label><input type="radio" name="q8" value="B">個人使用</label>
+  <p>8. 特殊な機能は？</p>
+  <label><input type="radio" name="q8" value="A">動くモザイク</label>
+  <label><input type="radio" name="q8" value="B">特になし</label>
 </div>
 
 <button onclick="diagnose()">診断する</button>
@@ -101,19 +102,19 @@ function diagnose() {
   let result = "";
 
   // 診断ロジック
-  if (q5 === "A") {
+  if (q8 === "A") {
     result = "<b>VN Video Editor</b><br>無料・高機能・複数トラック編集・動くモザイク対応。商用利用可（一部素材は条件確認）。";
-  } else if (q2 === "A" && q3 === "A" && q7 === "A" && q8 === "B") {
+  } else if (q2 === "A" && q3 === "A" && q6 === "A" && q7 === "B") {
     result = "<b>CapCut</b><br>無料・SNS向け・テンプレ豊富・字幕自動生成。個人使用向き。";
-  } else if (q2 === "A" && q3 === "A" && q7 === "A" && q8 === "A") {
+  } else if (q2 === "A" && q3 === "A" && q7 === "A") {
     result = "<b>VN Video Editor</b><br>無料・SNS向け・テンプレ豊富・商用利用可。個人利用にも最適。";
-  } else if (q2 === "B" && q6 === "A" && q7 === "A") {
+  } else if (q2 === "B" && q5 === "A" && q6 === "A") {
     result = "<b>iMovie</b><br>iOS標準・簡単操作・社内説明向き。商用利用可。";
-  } else if (q3 === "C" && q8 === "A" && q7 === "C" && q6 === "A") {
+  } else if (q3 === "C" && q7 === "C") {
     result = "<b>LumaFusion</b><br>有料・プロレベル・高機能。商用利用可。";
-  } else if (q4 === "A" && q6 === "C" && q8 === "A" && q7 !== "A") {
-    result = "<b>Adobe Premiere Rush</b><br>有料・PC/スマホ両対応・チーム共有向き。商用利用可。";
-  } else if (q2 === "A" && q3 === "A") {
+  } else if (q4 === "C" && q7 !== "A") {
+    result = "<b>Adobe Premiere Rush</b><br>有料・PC/スマホ両対応。商用利用・チーム共有向き。";
+  } else if (q2 === "A" && q3 === "A" && q4 === "A") {
     result = "<b>InShot</b><br>SNS向け・シンプルUI・無料で簡単編集。個人使用向き。";
   } else {
     result = "<b>VN Video Editor</b><br>無料・高機能・複数トラック編集・動くモザイク可能。商用利用も一部条件付きで可能。";
