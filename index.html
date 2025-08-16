@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>動画編集アプリ診断ツール</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; background: #f8f8f8; }
+    h1 { color: #333; }
+    .question { margin-bottom: 20px; }
+    label { display: block; margin: 5px 0; }
+    button { padding: 10px 20px; font-size: 16px; }
+    #result { margin-top: 30px; padding: 20px; background: #fff; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+<h1>動画編集アプリ診断ツール</h1>
+
+<div class="question">
+  <p>1. 動画の長さは？</p>
+  <label><input type="radio" name="q1" value="A">15秒以下（SNSショート）</label>
+  <label><input type="radio" name="q1" value="B">1分以内（SNS・広告）</label>
+  <label><input type="radio" name="q1" value="C">5分以上（イベント・社内用）</label>
+</div>
+
+<div class="question">
+  <p>2. 動画の用途は？</p>
+  <label><input type="radio" name="q2" value="A">SNS向けPR</label>
+  <label><input type="radio" name="q2" value="B">社内説明・マニュアル動画</label>
+  <label><input type="radio" name="q2" value="C">イベント記録・インタビュー</label>
+</div>
+
+<div class="question">
+  <p>3. 編集レベルは？</p>
+  <label><input type="radio" name="q3" value="A">とにかく簡単</label>
+  <label><input type="radio" name="q3" value="B">少し凝った編集</label>
+  <label><input type="radio" name="q3" value="C">高機能</label>
+</div>
+
+<div class="question">
+  <p>4. チームで共有して編集する必要は？</p>
+  <label><input type="radio" name="q4" value="A">はい</label>
+  <label><input type="radio" name="q4" value="B">いいえ</label>
+</div>
+
+<div class="question">
+  <p>5. 特殊な機能が必要？</p>
+  <label><input type="radio" name="q5" value="A">動くモザイク</label>
+  <label><input type="radio" name="q5" value="B">特になし</label>
+</div>
+
+<div class="question">
+  <p>6. 利用する端末は？</p>
+  <label><input type="radio" name="q6" value="A">iPhone</label>
+  <label><input type="radio" name="q6" value="B">Android</label>
+  <label><input type="radio" name="q6" value="C">両方</label>
+</div>
+
+<div class="question">
+  <p>7. 予算は？</p>
+  <label><input type="radio" name="q7" value="A">無料がいい</label>
+  <label><input type="radio" name="q7" value="B">月500円以内</label>
+  <label><input type="radio" name="q7" value="C">月1000円以上でもOK</label>
+</div>
+
+<div class="question">
+  <p>8. 利用目的は？</p>
+  <label><input type="radio" name="q8" value="A">商用利用</label>
+  <label><input type="radio" name="q8" value="B">個人使用</label>
+</div>
+
+<button onclick="diagnose()">診断する</button>
+
+<div id="result"></div>
+
+<script>
+function getAnswer(q) {
+  const radios = document.getElementsByName(q);
+  for (let r of radios) {
+    if (r.checked) return r.value;
+  }
+  return null;
+}
+
+function diagnose() {
+  const q1 = getAnswer("q1");
+  const q2 = getAnswer("q2");
+  const q3 = getAnswer("q3");
+  const q4 = getAnswer("q4");
+  const q5 = getAnswer("q5");
+  const q6 = getAnswer("q6");
+  const q7 = getAnswer("q7");
+  const q8 = getAnswer("q8");
+
+  if (!q1 || !q2 || !q3 || !q4 || !q5 || !q6 || !q7 || !q8) {
+    alert("すべての質問に回答してください");
+    return;
+  }
+
+  let result = "";
+
+  // 診断ロジック
+  if (q5 === "A") {
+    result = "<b>VN Video Editor</b><br>無料・高機能・複数トラック編集・動くモザイク対応。商用利用可（一部素材は条件確認）。";
+  } else if (q2 === "A" && q3 === "A" && q7 === "A" && q8 === "B") {
+    result = "<b>CapCut</b><br>無料・SNS向け・テンプレ豊富・字幕自動生成。個人使用向き。";
+  } else if (q2 === "A" && q3 === "A" && q7 === "A" && q8 === "A") {
+    result = "<b>VN Video Editor</b><br>無料・SNS向け・テンプレ豊富・商用利用可。個人利用にも最適。";
+  } else if (q2 === "B" && q6 === "A" && q7 === "A") {
+    result = "<b>iMovie</b><br>iOS標準・簡単操作・社内説明向き。商用利用可。";
+  } else if (q3 === "C" && q8 === "A" && q7 === "C" && q6 === "A") {
+    result = "<b>LumaFusion</b><br>有料・プロレベル・高機能。商用利用可。";
+  } else if (q4 === "A" && q6 === "C" && q8 === "A" && q7 !== "A") {
+    result = "<b>Adobe Premiere Rush</b><br>有料・PC/スマホ両対応・チーム共有向き。商用利用可。";
+  } else if (q2 === "A" && q3 === "A") {
+    result = "<b>InShot</b><br>SNS向け・シンプルUI・無料で簡単編集。個人使用向き。";
+  } else {
+    result = "<b>VN Video Editor</b><br>無料・高機能・複数トラック編集・動くモザイク可能。商用利用も一部条件付きで可能。";
+  }
+
+  document.getElementById("result").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
